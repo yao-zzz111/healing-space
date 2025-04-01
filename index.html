@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>治愈空间</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>治愈空间</h1>
+            <p class="subtitle">在这里，让心灵找到平静</p>
+        </header>
+
+        <main>
+            <section class="quote-section">
+                <div class="quote">
+                    <p id="daily-quote">"生活中最美好的事物都是免费的：阳光、空气、微笑和爱。"</p>
+                    <button onclick="changeQuote()" class="quote-btn">换一句</button>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="card">
+                    <h2>今日寄语</h2>
+                    <p id="daily-message">每一个清晨都是新的开始，让我们带着希望迎接每一天。</p>
+                    <div class="mood-selector">
+                        <p>今天的心情如何？</p>
+                        <div class="mood-buttons">
+                            <button onclick="setMood('happy')" class="mood-btn">😊</button>
+                            <button onclick="setMood('peaceful')" class="mood-btn">😌</button>
+                            <button onclick="setMood('grateful')" class="mood-btn">🙏</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>心灵小贴士</h2>
+                    <p id="tip-content">深呼吸，感受当下的美好，让烦恼随风而去。</p>
+                    <div class="breathing-exercise">
+                        <button onclick="startBreathing()" class="breathing-btn">开始呼吸练习</button>
+                        <div id="breathing-circle" class="breathing-circle"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>温暖时刻</h2>
+                    <p id="warm-message">记住，你并不孤单，世界因你而美好。</p>
+                    <div class="gratitude-list">
+                        <h3>感恩清单</h3>
+                        <ul id="gratitude-items">
+                            <li>温暖的阳光</li>
+                            <li>清新的空气</li>
+                            <li>美好的心情</li>
+                        </ul>
+                        <input type="text" id="new-gratitude" placeholder="添加感恩事项...">
+                        <button onclick="addGratitude()" class="add-btn">添加</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>愿你的每一天都充满温暖与希望</p>
+        </footer>
+    </div>
+
+    <script>
+        const quotes = [
+            "生活中最美好的事物都是免费的：阳光、空气、微笑和爱。",
+            "保持微笑，保持希望，保持善良。",
+            "每一个当下都是新的开始，让我们珍惜每一刻。",
+            "相信自己，你比想象中更强大。",
+            "让快乐成为习惯，让幸福成为常态。"
+        ];
+
+        const tips = [
+            "深呼吸，感受当下的美好，让烦恼随风而去。",
+            "闭上眼睛，想象自己置身于最美好的地方。",
+            "给自己一个温暖的拥抱，告诉自己一切都会好起来。",
+            "写下三件今天让你感到开心的小事。",
+            "听一首喜欢的歌，让音乐治愈你的心灵。"
+        ];
+
+        function changeQuote() {
+            const quoteElement = document.getElementById('daily-quote');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.textContent = quotes[randomIndex];
+        }
+
+        function setMood(mood) {
+            const messageElement = document.getElementById('daily-message');
+            const messages = {
+                happy: "今天的心情真不错，继续保持这份快乐！",
+                peaceful: "内心平静，感受当下的美好。",
+                grateful: "感恩生活中的每一个美好时刻。"
+            };
+            messageElement.textContent = messages[mood];
+        }
+
+        function startBreathing() {
+            const circle = document.getElementById('breathing-circle');
+            circle.classList.add('breathing');
+            setTimeout(() => {
+                circle.classList.remove('breathing');
+            }, 8000);
+        }
+
+        function addGratitude() {
+            const input = document.getElementById('new-gratitude');
+            const list = document.getElementById('gratitude-items');
+            if (input.value.trim()) {
+                const li = document.createElement('li');
+                li.textContent = input.value;
+                list.appendChild(li);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html> 
